@@ -572,21 +572,69 @@ Since I used the regex library from Python, the implementation is optimized and 
 
 ---
 
-# 7. Conclusion
+# 7. Comparing to Other Approaches
 
-Since:
+## 7.1 DFA vs. Regular Expression
 
-$$
-|L| < \infty
-$$
-
-it follows that:
+From the perspective of formal language theory, the DFA and the regular expression are equivalent, because they define exactly the same regular language. For the language studied in this project, both approaches have time complexity
 
 $$
-L \text{ is regular}
+T(n) = O(n)
 $$
 
-The DFA and the regular expression provide equivalent representations of the language, both correctly recognizing all valid strings and rejecting invalid ones.
+since they process the input string in a number of steps proportional to its length. Even so, there are important practical differences between them.
+
+The DFA is more explicit and easier to analyze formally. Each state represents a prefix of a valid word, and each transition makes the recognition process visible step by step. This makes the DFA especially useful for academic purposes, because it clearly shows why a string is accepted or rejected, it is also closer to the way lexical analysis is presented in automata theory and compiler design, where tokens are recognized through state transitions (Aho et al., 2007).
+
+The regular expression, on the other hand, is much more compact. Instead of displaying the recognition process as a sequence of transitions, it describes the language as a single declarative pattern. This makes the regex easier to implement and shorter to write. However, it is less transparent than the DFA, because the internal recognition mechanism is hidden inside the regex engine. For that reason, although both solutions are equivalent in expressive power, the DFA is more useful for formal explanation, while the regular expression is more convenient for practical implementation.
+
+## 7.2 Comparison with a Direct List Membership Check
+
+Another possible solution is to skip automata and regular expressions entirely, and just check if the input string matches any word in a list of valid words, such as:
+
+$$
+\{\text{Dina}, \text{Dol}, \text{Dôr}, \text{Draug}, \text{Drego}\}
+$$
+
+This approach is straightforward, you simply see if the input is in the list. While this method is easy to implement, it does not use the concepts of formal language theory. It does not show how the valid words are structured or how they could be recognized by an automaton or a regular expression. It only checks for membership in a fixed set.
+
+If there are $k$ valid words and each comparison checks up to $n$ characters, the time complexity is
+
+$$
+T(n) = O(k \cdot n)
+$$
+
+For the project, $k = 5$, so this method is still fast. However, it is less useful for understanding the structure of the language and does not scale well to larger problems. Unlike the DFA or regex, it does not reveal shared prefixes or patterns in the words, and it is not a general solution for lexical analysis.
+
+## 7.3 Comparison with an NFA
+Another approach is to describe the language using a nondeterministic finite automaton (NFA). Like DFAs, NFAs recognize regular languages and are equivalent in expressive power. NFAs can be easier to construct in some cases because they allow multiple possible transitions for the same input and can use epsilon (empty string) transitions.
+
+For this particular project, however, using an NFA does not offer significant benefits. The language is small and its structure is straightforward, making the DFA both simple and effective, therefore introducing nondeterminism would not simplify the model or the implementation, and could make the formal description less clear, making the DFA the most suitable choice for this lexical analysis.
+
+## 7.4 Overall Comparison
+
+The main differences between the approaches can be summarized as follows:
+
+| Approach | Time Complexity | Main Advantage | Main Limitation |
+|---|---|---|---|
+| DFA | $O(n)$ | Clear formal model, explicit recognition process | More verbose to construct |
+| Regular Expression | $O(n)$ for this case | Compact and easy to implement | Less transparent internally |
+| Direct List Check | $O(k \cdot n)$ | Very simple for tiny sets | Does not model the problem formally |
+| NFA | = DFA | Sometimes easier to design | Less intuitive for this project |
+
+Based on this comparison, the DFA is the strongest solution from this problem's perspective because it makes the structure of the language explicit and supports a precise explanation of the recognition process. The regular expression is equally valid and more concise, but it does not provide the same level of transparency in the recognition process. A direct list-based solution would work computationally, but it would not satisfy the formal objectives of the assignment as well as the DFA and regex approaches do.
+
+# 8. Conclusion
+
+This project showed that a finite language composed of the five strings `Dina`, `Dol`, `Dôr`, `Draug`, and `Drego` can be modeled and recognized through two equivalent formal mechanisms: a deterministic finite automaton and a regular expression. Since the language contains only a finite number of strings, it is by definition a regular language. This means it can be represented both by a deterministic finite automaton (DFA) and by a regular expression (regex), as established in automata theory (Hopcroft et al., 2007; Sipser, 2012).
+
+The DFA provided a clear structural view of the language by representing shared prefixes as common paths and separating only where the valid words differ. This made the recognition process explicit and easy to explain step by step. The Prolog implementation followed that formal model directly, which helped connect the theoretical definition of the automaton with its computational realization.
+
+The regular expression provided a more compact description of the same language. Although it did not make the recognition process as visible as the DFA, it successfully defined the same set of valid strings and produced results consistent with the automaton during testing.
+
+The complexity analysis showed that, for this specific language, both the DFA and the regex operate in linear time with respect to the input length. The comparison with other approaches also showed that, although simpler alternatives such as direct list membership could work for a small finite set, they are less suitable from the viewpoint of formal language theory because they do not model the problem as a true lexical recognition task.
+
+Overall, this project confirmed the theoretical equivalence between deterministic finite automata and regular expressions, while also showing their practical differences. The DFA proved to be the clearest representation for formal explanation, whereas the regular expression offered a more concise implementation. Together, both models provided a complete and consistent solution to the lexical analysis problem defined in this work.
 
 # References
 
@@ -595,3 +643,8 @@ Esparza, J., & Blondin, M. (2023). Automata theory : An algorithmic approach. MI
 Hopcroft, J. E., Motwani, R., & Ullman, J. D. (2007). Introduction to automata theory, languages, and computation (3rd ed.). Pearson.
 
 Sipser, M. (2012). Introduction to the theory of computation (3rd ed.). Cengage Learning.
+
+# Additional notes
+## Use of AI in the project
+
+The implementation of the DFA and regular expression was done manually, without the use of AI tools. However, I used AI to help with the explanation and analysis sections of the paper, as well as to generate the test cases for both implementations. The AI was used as a tool to assist in writing and organizing the content, but all technical implementations and research were done by myself without direct AI involvement.
