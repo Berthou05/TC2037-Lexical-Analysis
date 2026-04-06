@@ -1,5 +1,5 @@
 % Import the automaton definition and testing utilities
-:- ["automata"].
+:- ['automata'].
 
 % Import the readutil library for reading test cases from a file
 :- use_module(library(readutil)).
@@ -20,8 +20,8 @@ run_test(File) :-
     % Read test cases from the specified file
     read_file_to_string(File, Content, []),
     % Split the content into lines and filter out empty lines
-    split_string(Content, "\n", "\r\t ", RawTests),
-    exclude(=(""), RawTests, Tests),
+    split_string(Content, '\n', '\r\t ', RawTests),
+    exclude(=(''), RawTests, Tests),
     test_list(Tests).
 
 test_list([]).
