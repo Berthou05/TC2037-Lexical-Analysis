@@ -586,7 +586,7 @@ since they process the input string in a number of steps proportional to its len
 
 The DFA is more explicit and easier to analyze formally. Each state represents a prefix of a valid word, and each transition makes the recognition process visible step by step. This makes the DFA especially useful for academic purposes, because it clearly shows why a string is accepted or rejected, it is also closer to the way lexical analysis is presented in automata theory and compiler design, where tokens are recognized through state transitions (Aho et al., 2007).
 
-The regular expression, on the other hand, is much more compact. Instead of displaying the recognition process as a sequence of transitions, it describes the language as a single declarative pattern. This makes the regex easier to implement and shorter to write. However, it is less transparent than the DFA, because the internal recognition mechanism is hidden inside the regex engine. For that reason, although both solutions are equivalent in expressive power, the DFA is more useful for formal explanation, while the regular expression is more convenient for practical implementation.
+The regular expression, on the other hand, is much more compact. Instead of displaying the recognition process as a sequence of transitions, it describes the language as a single declarative pattern. This makes the regex easier to implement and shorter to write. However, it is less transparent than the DFA, because the internal recognition mechanism is hidden inside the regex engine and for that reason, although both solutions are equivalent in expressive power, the DFA is more useful for formal explanation, while the regular expression is more convenient for practical implementation.
 
 ## 7.2 Comparison with a Direct List Membership Check
 
@@ -647,4 +647,8 @@ Sipser, M. (2012). Introduction to the theory of computation (3rd ed.). Cengage 
 # Additional notes
 ## Use of AI in the project
 
-The implementation of the DFA and regular expression was done manually, without the use of AI tools. However, I used AI to help with the explanation and analysis sections of the paper, as well as to generate the test cases for both implementations. The AI was used as a tool to assist in writing and organizing the content, but all technical implementations and research were done by myself without direct AI involvement.
+The DFA and regular expression implementations were completed manually, without the use of AI tools. AI was used only to assist with the explanation and analysis sections of the paper, as well as to help generate test cases for both implementations.
+
+AI was also used as a reference when creating the helper file that reads test cases from a `.txt` file to support a more automated testing process. This assistance was limited to improving the testing workflow, which was outside the main scope of the implementation.
+
+Overall, AI was used as a writing and organizational aid, but all technical implementations and research were completed independently, without direct AI involvement.
