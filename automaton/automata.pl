@@ -48,13 +48,6 @@ accept(State, [T|H]) :-
 
 recognizes(String) :-
     initial(InitialState),
-    % Using the function stringToList/2 to convert the input string into a list of characters
-    stringToList(String, Chars),
+    % Using the prolog function string_chars/2 to convert the input string into a list of characters
+    string_chars(String, Chars),
     accept(InitialState, Chars).
-
-% Helper function that turns string to a list of chars
-
-stringToList([], []).
-
-stringToList([H|T], [C|F]) :-
-    string_chars(T, F).
