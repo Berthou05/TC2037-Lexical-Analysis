@@ -597,8 +597,7 @@ The main differences between the approaches can be summarized as follows:
 | DFA | $O(n)$ | Clear formal model, explicit recognition process | More verbose to construct |
 | Regular Expression | $O(n)$ for this case | Compact and easy to implement | Less transparent internally |
 
-Based on this comparison, the DFA is the strongest solution from this problem's perspective because it makes the structure of the language explicit and supports a precise explanation of the recognition process. The regular expression is equally valid and more concise, but it does not provide the same level of transparency in the recognition process. A direct list-based solution would work computationally, but it would not satisfy the formal objectives of the assignment as well as the DFA and regex approaches do.
-
+Based on this comparison, the DFA is the strongest solution from this problem's perspective because it makes the structure of the language explicit and supports a precise explanation of the recognition process. The regular expression is equally valid and more concise, but it does not provide the same level of transparency in the recognition process. 
 # 8. Conclusion
 
 This project showed that a finite language composed of the five strings `Dina`, `Dol`, `Dôr`, `Draug`, and `Drego` can be modeled and recognized through two equivalent formal mechanisms: a deterministic finite automaton and a regular expression. Since the language contains only a finite number of strings, it is by definition a regular language. This means it can be represented both by a deterministic finite automaton (DFA) and by a regular expression (regex), as established in automata theory (Hopcroft et al., 2007; Sipser, 2012).
