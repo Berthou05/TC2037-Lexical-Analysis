@@ -572,9 +572,9 @@ Since I used the regex library from Python, the implementation is optimized and 
 
 ---
 
-# 7. Comparing to Other Approaches
+# 7. Comparing between Approaches
 
-## 7.1 DFA vs. Regular Expression
+## DFA vs. Regular Expression
 
 From the perspective of formal language theory, the DFA and the regular expression are equivalent, because they define exactly the same regular language. For the language studied in this project, both approaches have time complexity
 
@@ -588,30 +588,7 @@ The DFA is more explicit and easier to analyze formally. Each state represents a
 
 The regular expression, on the other hand, is much more compact. Instead of displaying the recognition process as a sequence of transitions, it describes the language as a single declarative pattern. This makes the regex easier to implement and shorter to write. However, it is less transparent than the DFA, because the internal recognition mechanism is hidden inside the regex engine and for that reason, although both solutions are equivalent in expressive power, the DFA is more useful for formal explanation, while the regular expression is more convenient for practical implementation.
 
-## 7.2 Comparison with a Direct List Membership Check
-
-Another possible solution is to skip automata and regular expressions entirely, and just check if the input string matches any word in a list of valid words, such as:
-
-$$
-\{\text{Dina}, \text{Dol}, \text{Dôr}, \text{Draug}, \text{Drego}\}
-$$
-
-This approach is straightforward, you simply see if the input is in the list. While this method is easy to implement, it does not use the concepts of formal language theory. It does not show how the valid words are structured or how they could be recognized by an automaton or a regular expression. It only checks for membership in a fixed set.
-
-If there are $k$ valid words and each comparison checks up to $n$ characters, the time complexity is
-
-$$
-T(n) = O(k \cdot n)
-$$
-
-For the project, $k = 5$, so this method is still fast. However, it is less useful for understanding the structure of the language and does not scale well to larger problems. Unlike the DFA or regex, it does not reveal shared prefixes or patterns in the words, and it is not a general solution for lexical analysis.
-
-## 7.3 Comparison with an NFA
-Another approach is to describe the language using a nondeterministic finite automaton (NFA). Like DFAs, NFAs recognize regular languages and are equivalent in expressive power. NFAs can be easier to construct in some cases because they allow multiple possible transitions for the same input and can use epsilon (empty string) transitions.
-
-For this particular project, however, using an NFA does not offer significant benefits. The language is small and its structure is straightforward, making the DFA both simple and effective, therefore introducing nondeterminism would not simplify the model or the implementation, and could make the formal description less clear, making the DFA the most suitable choice for this lexical analysis.
-
-## 7.4 Overall Comparison
+## Overall Comparison
 
 The main differences between the approaches can be summarized as follows:
 
@@ -619,8 +596,6 @@ The main differences between the approaches can be summarized as follows:
 |---|---|---|---|
 | DFA | $O(n)$ | Clear formal model, explicit recognition process | More verbose to construct |
 | Regular Expression | $O(n)$ for this case | Compact and easy to implement | Less transparent internally |
-| Direct List Check | $O(k \cdot n)$ | Very simple for tiny sets | Does not model the problem formally |
-| NFA | = DFA | Sometimes easier to design | Less intuitive for this project |
 
 Based on this comparison, the DFA is the strongest solution from this problem's perspective because it makes the structure of the language explicit and supports a precise explanation of the recognition process. The regular expression is equally valid and more concise, but it does not provide the same level of transparency in the recognition process. A direct list-based solution would work computationally, but it would not satisfy the formal objectives of the assignment as well as the DFA and regex approaches do.
 
