@@ -606,8 +606,6 @@ The DFA provided a clear structural view of the language by representing shared 
 
 The regular expression provided a more compact description of the same language. Although it did not make the recognition process as visible as the DFA, it successfully defined the same set of valid strings and produced results consistent with the automaton during testing.
 
-The complexity analysis showed that, for this specific language, both the DFA and the regex operate in linear time with respect to the input length. The comparison with other approaches also showed that, although simpler alternatives such as direct list membership could work for a small finite set, they are less suitable from the viewpoint of formal language theory because they do not model the problem as a true lexical recognition task.
-
 Overall, this project confirmed the theoretical equivalence between deterministic finite automata and regular expressions, while also showing their practical differences. The DFA proved to be the clearest representation for formal explanation, whereas the regular expression offered a more concise implementation. Together, both models provided a complete and consistent solution to the lexical analysis problem defined in this work.
 
 # References
